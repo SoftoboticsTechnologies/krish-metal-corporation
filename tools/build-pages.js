@@ -6,7 +6,12 @@ const path = require('path');
 const OUT = path.resolve(process.argv[2] || '.');
 const KMC = require(path.join(OUT, 'js', 'products-data.js'));
 
-const SITE = 'https://www.krishmetalcorp.com';
+/* Live website address – used for canonical URLs, sitemap and link-preview (og:image) URLs.
+   These MUST point to where the site is actually hosted, or link previews show an empty image.
+   Currently the GitHub Pages address. When www.krishmetalcorp.com goes live, change it here (or override:)
+   Override when building:  SITE_URL=https://your-domain.com node tools/build-pages.js .  */
+const SITE = (process.env.SITE_URL || 'https://softoboticstechnologies.github.io/krish-metal-corporation').replace(/\/+$/, '');
+const OG_IMAGE = SITE + '/assets/images/og-image.png';
 const PHONE = '+919921066212', PHONE_TXT = '+91 99210 66212';
 const EMAIL = 'krishmetalcorp@gmail.com';
 const GST = '27AUAPK6096N1Z1';
@@ -99,12 +104,17 @@ function head(p) {
 <meta property="og:title" content="${esc(p.title)}">
 <meta property="og:description" content="${esc(p.desc)}">
 <meta property="og:url" content="${url}">
-<meta property="og:image" content="${SITE}/assets/images/site/hero-tools.jpg">
+<meta property="og:image" content="${OG_IMAGE}">
+<meta property="og:image:secure_url" content="${OG_IMAGE}">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Krish Metal Corporation logo">
 <meta property="og:locale" content="en_IN">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(p.title)}">
 <meta name="twitter:description" content="${esc(p.desc)}">
-<meta name="twitter:image" content="${SITE}/assets/images/site/hero-tools.jpg">
+<meta name="twitter:image" content="${OG_IMAGE}">
 <!-- Icons -->
 <link rel="icon" type="image/png" sizes="64x64" href="${r}assets/logo/favicon.png">
 <link rel="apple-touch-icon" href="${r}assets/logo/apple-touch-icon.png">
@@ -1233,13 +1243,13 @@ function notFound() {
     <h1>This page has been bent out of shape</h1>
     <p class="lead">The page you are looking for does not exist or has moved.</p>
     <div class="btn-row" style="justify-content:center">
-      <a class="btn btn--primary" href="/index.html"><i class="fa-solid fa-house" aria-hidden="true"></i> Back to Home</a>
-      <a class="btn btn--outline" href="/products.html">View Products</a>
+      <a class="btn btn--primary" href="${SITE}/index.html"><i class="fa-solid fa-house" aria-hidden="true"></i> Back to Home</a>
+      <a class="btn btn--outline" href="${SITE}/products.html">View Products</a>
       <a class="btn btn--wa" href="${WA_DEFAULT}" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp Us</a>
     </div>
   </div>
 </section>`;
-  page({ file: '404.html', root: '/', nav: '', noindex: true, title: 'Page Not Found | Krish Metal Corporation', desc: 'The requested page could not be found.' }, body);
+  page({ file: '404.html', root: SITE + '/', nav: '', noindex: true, title: 'Page Not Found | Krish Metal Corporation', desc: 'The requested page could not be found.' }, body);
 }
 
 /* ================================ RUN ================================ */
