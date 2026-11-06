@@ -378,13 +378,23 @@ table { border-collapse: collapse; width: 100%; }
 .socials a:hover { background: var(--accent); color: var(--dark); transform: translateY(-3px); }
 .footer-map { border-radius: var(--radius); overflow: hidden; aspect-ratio: 16 / 10; margin-top: 4px; background: var(--dark-2); }
 .footer-map iframe { width: 100%; height: 100%; border: 0; filter: grayscale(.3); }
-.footer-bottom { border-top: 1px solid rgba(255, 255, 255, .08); padding-block: 18px; font-size: .85rem; }
-.footer-bottom .container { display: flex; flex-direction: column; gap: 6px; align-items: center; text-align: center; }
-.footer-bottom a { color: #C9D2DF; }
-.powered-by { display: inline-flex; align-items: center; gap: 12px; color: #E3E9F2; font-weight: 500; }
-.powered-by::before { content: ""; width: 1px; height: 18px; background: rgba(255, 255, 255, .25); }
-.powered-by a { display: inline-flex; }
-.powered-by img { height: 24px; width: auto; }
+/* Credit bar: container (16px sides, 640/768/1024/1280/1536 max-widths) > 1px white/10 top rule, 8px block padding, 12/16 Barlow 500 at 55% */
+.footer-bottom { width: 100%; margin-inline: auto; padding-inline: 16px; color: rgba(248, 250, 252, .55); color: oklch(0.984 0.003 247.858 / .55); }
+.footer-bottom__bar { border-top: 1px solid rgba(255, 255, 255, .1); padding-block: 8px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; column-gap: 16px; row-gap: 6px; font-family: var(--font-sub); font-size: 12px; line-height: 16px; font-weight: 500; text-align: center; }
+.footer-credit { display: flex; align-items: center; gap: 8px; }
+.footer-credit__divider { display: none; opacity: .5; }
+.footer-credit a { display: flex; transition: opacity .15s cubic-bezier(.4, 0, .2, 1); }
+.footer-credit a:hover { opacity: .8; }
+.footer-credit img { display: block; height: 16px; width: auto; }
+@media (min-width: 640px) {
+  .footer-bottom { max-width: 640px; }
+  .footer-bottom__bar { flex-direction: row; padding-right: 64px; text-align: left; }
+  .footer-credit__divider { display: inline; }
+}
+@media (min-width: 768px) { .footer-bottom { max-width: 768px; } }
+@media (min-width: 1024px) { .footer-bottom { max-width: 1024px; } }
+@media (min-width: 1280px) { .footer-bottom { max-width: 1280px; } }
+@media (min-width: 1536px) { .footer-bottom { max-width: 1536px; } }
 .footer-gst { margin-block: 12px 16px; }
 .footer-btns { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 16px; }
 
@@ -667,7 +677,6 @@ table { border-collapse: collapse; width: 100%; }
   .footer-col h3::after { left: 0; transform: none; }
   .footer-contact li { justify-content: flex-start; }
   .socials, .footer-btns { justify-content: flex-start; }
-  .footer-bottom .container { flex-direction: row; justify-content: space-between; text-align: left; }
   .form-grid { grid-template-columns: repeat(2, 1fr); }
   .form-grid .span-2 { grid-column: 1 / -1; }
   /* tablet: address left, actions right */

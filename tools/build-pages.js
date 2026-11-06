@@ -264,9 +264,13 @@ function footer(p) {
     </div>
   </div>
   <div class="footer-bottom">
-    <div class="container">
-      <span>&copy; <span data-year>2026</span> Krish Metal Corporation. All Rights Reserved.</span>
-      <span class="powered-by">Powered By <a href="https://www.dripfunnel.com/in/" target="_blank" rel="noopener" aria-label="DripFunnel"><img src="${r}assets/dripfunnel/DRIPFUNNEL%20white%20logo.png" alt="DripFunnel" width="2077" height="369" loading="lazy"></a></span>
+    <div class="footer-bottom__bar">
+      <div>&copy; <span data-year>2026</span> Krish Metal Corporation. All rights reserved.</div>
+      <div class="footer-credit">
+        <span class="footer-credit__divider" aria-hidden="true">|</span>
+        <span>Powered by</span>
+        <a href="https://dripfunnel.com" target="_blank" rel="noopener noreferrer"><img src="${r}assets/dripfunnel/DRIPFUNNEL%20white%20logo.png" alt="DripFunnel" width="2077" height="369" loading="lazy"></a>
+      </div>
     </div>
   </div>
 </footer>
