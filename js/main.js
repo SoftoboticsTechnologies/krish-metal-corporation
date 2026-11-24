@@ -262,6 +262,14 @@
   $$('.marquee__track').forEach(function (t) {
     t.insertAdjacentHTML('beforeend', t.innerHTML.replace(/<span/g, '<span aria-hidden="true"'));
   });
+  /* Testimonial rows – clone cards for a seamless loop (clones hidden from AT) */
+  $$('.tmarquee__track').forEach(function (t) {
+    Array.prototype.slice.call(t.children).forEach(function (c) {
+      var k = c.cloneNode(true);
+      k.setAttribute('aria-hidden', 'true'); k.setAttribute('data-clone', ''); k.setAttribute('inert', '');
+      t.appendChild(k);
+    });
+  });
 
   /* ---------- 9. LIGHTBOX (shared by product gallery & gallery page) ---------- */
   var lb = null, lbItems = [], lbIndex = 0, lbReturn = null;

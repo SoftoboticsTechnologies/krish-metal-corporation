@@ -219,15 +219,9 @@ function footer(p) {
 <footer class="site-footer">
   <div class="container footer-top">
     <div class="footer-col">
-      <a class="footer-logo" href="${r}index.html"><img src="${r}assets/logo/logo-footer.png" alt="Krish Metal Corporation" width="640" height="564" loading="lazy"></a>
+      <a class="footer-logo" href="${r}index.html"><picture><source srcset="${r}assets/logo/logo-footer-kmc.webp" type="image/webp"><img src="${r}assets/logo/logo-footer-kmc.png" alt="Krish Metal Corporation" width="400" height="348" loading="lazy"></picture></a>
       <p>Manufacturer of KMC / EURO style press brake tools since 2016 – punches, dies, radius and hemming tools, holders, shearing knives and blade resharpening, from Bhosari, Pune.</p>
       <p class="footer-gst"><span class="gst-badge"><i class="fa-solid fa-receipt" aria-hidden="true"></i>GST: <strong>${GST}</strong></span></p>
-      <div class="socials">
-        <a href="${IG}" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
-        <a href="${WA_DEFAULT}" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
-        <a href="${GMB}" target="_blank" rel="noopener" aria-label="Google Business Profile"><i class="fa-brands fa-google" aria-hidden="true"></i></a>
-        <a href="mailto:${EMAIL}" aria-label="Email"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
-      </div>
       <div class="footer-btns">
         <a class="btn btn--accent btn--sm" href="${r}${CAT_PDF}" download><i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> Download Catalogue</a>
         <a class="btn btn--light btn--sm" href="${GMB}" target="_blank" rel="noopener"><i class="fa-solid fa-star" aria-hidden="true"></i> Review us on Google</a>
@@ -260,7 +254,12 @@ function footer(p) {
         <li><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="mailto:${EMAIL}">${EMAIL}</a></li>
         <li><i class="fa-solid fa-clock" aria-hidden="true"></i><span>Mon – Sat: 9:30 AM – 7:00 PM</span></li>
       </ul>
-      <div class="footer-map"><iframe src="${MAP}" title="Krish Metal Corporation location map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+      <div class="socials">
+        <a href="${IG}" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        <a href="${WA_DEFAULT}" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+        <a href="${GMB}" target="_blank" rel="noopener" aria-label="Google Business Profile"><i class="fa-brands fa-google" aria-hidden="true"></i></a>
+        <a href="mailto:${EMAIL}" aria-label="Email"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
+      </div>
     </div>
   </div>
   <div class="footer-bottom">
@@ -316,7 +315,6 @@ function banner(title, sub, crumbs, r) {
   const li = crumbs.map((c, i) => i === crumbs.length - 1 ? `<li aria-current="page">${esc(c[0])}</li>` : `<li><a href="${r}${c[1]}">${esc(c[0])}</a></li>`).join('');
   return `<section class="page-banner">
   <div class="container">
-    <nav class="breadcrumb" aria-label="Breadcrumb"><ol>${li}</ol></nav>
     <h1>${title}</h1>
     ${sub ? `<p>${sub}</p>` : ''}
   </div>
