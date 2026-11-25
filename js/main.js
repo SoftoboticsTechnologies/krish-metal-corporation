@@ -214,31 +214,6 @@
     });
     document.addEventListener('visibilitychange', function () { document.hidden ? stop() : restart(); });
     onSwipe(hero, function () { next(); restart(); }, function () { prev(); restart(); });
-    /* Text that sits on top of the photo turns black: a black copy of the
-       slide text is clipped to the photo's on-screen rectangle (object-fit: contain, right-aligned). */
-    slides.forEach(function (s) {
-      var c = $('.container', s);
-      if (!c) return;
-      var ink = document.createElement('div');
-      ink.className = 'hero__ink';
-      ink.setAttribute('aria-hidden', 'true');
-      ink.inert = true;
-      ink.appendChild(c.cloneNode(true));
-      s.appendChild(ink);
-    });
-    function placeInk() {
-      slides.forEach(function (s) {
-        var img = $('.hero__bg img', s), ink = $('.hero__ink', s);
-        if (!img || !ink) return;
-        var W = s.clientWidth, H = s.clientHeight;
-        var nw = +img.getAttribute('width'), nh = +img.getAttribute('height');
-        var k = Math.min(W / nw, H / nh), rw = nw * k, rh = nh * k;
-        var top = Math.max(0, (H - rh) / 2), left = Math.max(0, W - rw);
-        ink.style.clipPath = 'inset(' + top + 'px 0 ' + top + 'px ' + left + 'px)';
-      });
-    }
-    placeInk();
-    window.addEventListener('resize', placeInk);
     go(0); restart();
   }
 
