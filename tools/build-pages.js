@@ -362,8 +362,9 @@ function ctaBand(r, title, text) {
 </section>`;
 }
 
-const brandsMarquee = () => `<div class="marquee" aria-label="Compatible press brake brands"><div class="marquee__track brands">${KMC.brands.map((b) => `<span>${esc(b)}</span>`).join('')}</div></div>
-<p class="disclaimer">KMC is not affiliated or connected with the mentioned trademarks and manufacturers; they are listed for information purposes only.</p>`;
+const clientCard = (c) => `<span class="brand-card"><span class="brand-card__logo"><img src="assets/images/brands/${c.logo}" alt="${esc(c.name)} logo" width="80" height="48" loading="lazy"></span><span class="brand-card__name">${esc(c.name)}</span></span>`;
+const clientsMarquee = () => `<div class="marquee marquee--logos" aria-label="Our clients"><div class="marquee__track">${KMC.clients.map(clientCard).join('')}</div></div>
+      <div class="marquee marquee--logos marquee--reverse" aria-hidden="true"><div class="marquee__track">${KMC.clients.slice(5).concat(KMC.clients.slice(0, 5)).map(clientCard).join('')}</div></div>`;
 
 const picture = (r, name, alt, w, h, attrs = '') => `<picture><source srcset="${r}assets/images/site/${name}.webp" type="image/webp"><img src="${r}assets/images/site/${name}.jpg" alt="${esc(alt)}" width="${w}" height="${h}" ${attrs}></picture>`;
 
@@ -406,7 +407,7 @@ function home() {
   const why = [
     ['fa-fire-flame-curved', 'Induction Hardened 55–60 HRC', 'Working areas hardened 3–4 mm deep for edge life that outlasts untreated tooling.'],
     ['fa-layer-group', '3 Material Grades', 'Economy (C45), Production (C45 quenched) and Professional (Cr42Mo4) – pay only for the strength you need.'],
-    ['fa-industry', 'Fits 50+ Press Brake Brands', 'Standard KMC / EURO clamping suits Amada, Bystronic, Durma, Ermaksan, Yangli and many more.'],
+    ['fa-industry', 'Fits 50+ Press Brake Brands', 'Standard KMC / EURO clamping suits a wide range of press brake machines.'],
     ['fa-truck-fast', '24 / 48 / 72 h Stock Delivery', 'Common positions held in stock and dispatched fast across India.'],
     ['fa-compass-drafting', 'Custom Tooling to Drawing', 'Special profiles, joggles and radius tools engineered from your part drawing.'],
     ['fa-file-code', 'Free DXF for CNC Libraries', 'Every tool we sell comes with its true 2D geometry for your controller’s tool library.'],
@@ -535,32 +536,25 @@ function home() {
   </div>
 </section>
 
-<!-- ===================== COMPATIBLE BRANDS ===================== -->
-<section class="section section--dark">
+<!-- ===================== OUR CLIENTS (logos: assets/images/brands/, list: js/products-data.js) ===================== -->
+<section class="section section--dark kmc-compat">
   <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">KMC Tool System</span>
-      <h2>Compatible with press brakes from 50+ manufacturers</h2>
-      <p class="lead">Our standard KMC / EURO clamping fits a wide range of machines, including:</p>
-    </div>
-    ${brandsMarquee()}
-  </div>
-</section>
-
-<!-- ===================== CLIENTS =====================
-     CLIENT: replace assets/images/clients/client-1.png … client-12.png with your real client logos. -->
-<section class="section">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">Our Clients</span>
-      <h2>Trusted by fabricators and OEMs</h2>
-    </div>
-    <div class="carousel carousel--logos" data-autoplay>
-      <div class="carousel__track">
-        ${Array.from({ length: 12 }, (_, i) => `<div class="logo-tile"><img src="assets/images/clients/client-${i + 1}.png" data-placeholder="Client logo ${i + 1}" alt="Client logo ${i + 1}" width="180" height="70" loading="lazy"></div>`).join('\n        ')}
+    <div class="kmc-compat__head reveal">
+      <div>
+        <span class="eyebrow">Our Clients</span>
+        <h2>Trusted by <span class="text-accent">leading</span> manufacturers</h2>
+        <p class="lead">Engineering companies and OEMs across India rely on Krish Metal Corporation press brake tooling for accurate, repeatable bends.</p>
       </div>
-      <div class="carousel__nav"><button type="button" class="carousel__btn carousel__btn--prev" aria-label="Previous logos"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button><button type="button" class="carousel__btn carousel__btn--next" aria-label="Next logos"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button></div>
+      <ul class="kmc-compat__stats">
+        <li><strong>13&nbsp;mm</strong><span>KMC / EURO tang</span></li>
+        <li><strong>55–60</strong><span>HRC hardened</span></li>
+        <li><strong>24–72&nbsp;h</strong><span>Stock delivery</span></li>
+      </ul>
     </div>
+    <div class="kmc-compat__rows">
+      ${clientsMarquee()}
+    </div>
+    <p class="text-center" style="margin-top:28px"><a class="btn btn--light" href="clients.html">View all clients <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></p>
   </div>
 </section>
 
@@ -1078,13 +1072,6 @@ function technical() {
   </div>
 </section>
 
-<section class="section section--dark" id="brands">
-  <div class="container">
-    <div class="section-head reveal"><span class="eyebrow">Compatibility</span><h2>Press brake brands using KMC tool system</h2><p class="lead">Including the following trademarks, but not limited to:</p></div>
-    <div class="brands" data-brands></div>
-    <p class="disclaimer">KMC is not affiliated or connected with the mentioned trademarks and manufacturers; they are listed for information purposes only.</p>
-  </div>
-</section>
 ${ctaBand(r, 'Not sure which tool you need?', 'Send us your part drawing – we will prepare the tool list and check the tonnage for you.')}`;
   page({ file: 'technical.html', nav: 'technical', title: 'Press Brake Bending Force Calculator & Tonnage Chart | Krish Metal Corporation', desc: 'Free press brake bending force calculator: die opening V, inside radius, minimum flange and tonnage. Mild steel and hemming tonnage tables, KMC clamping dimensions and standard tool lengths.',
     crumbs: [['Home', 'index.html'], ['Technical Info']] }, body);
@@ -1132,9 +1119,8 @@ function clients() {
 <section class="section">
   <div class="container">
     <div class="section-head reveal"><span class="eyebrow">Clientele</span><h2>Companies we work with</h2></div>
-    <!-- CLIENT: replace assets/images/clients/client-1.png … client-12.png (transparent PNG/SVG, approx. 360×140 px) -->
     <div class="logo-grid">
-      ${Array.from({ length: 12 }, (_, i) => `<div class="logo-tile reveal"><img src="assets/images/clients/client-${i + 1}.png" data-placeholder="Client logo ${i + 1}" alt="Client logo ${i + 1}" width="180" height="70" loading="lazy"></div>`).join('\n      ')}
+      ${KMC.clients.map((c) => `<figure class="logo-tile logo-tile--named reveal"><img src="assets/images/brands/${c.logo}" alt="${esc(c.name)} logo" width="180" height="90" loading="lazy"><figcaption>${esc(c.name)}</figcaption></figure>`).join('\n      ')}
     </div>
   </div>
 </section>

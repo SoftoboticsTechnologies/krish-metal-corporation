@@ -413,11 +413,18 @@
     ['2.5', '6.5', '55', '–', '5.0', '90', '–'], ['3.0', '8.0', '70', '–', '6.0', '100', '–']
   ];
 
-  var brands = ['Adira', 'AM Machinery', 'Amada', 'Axial', 'Baykal', 'Boschert', 'Bystronic', 'CMU', 'CoastOne', 'Colgar', 'Colly', 'Gilardi', 'Guifil', 'Dener Makina', 'Deratech', 'Durma', 'Edward Pearson', 'Ermaksan', 'Femas', 'Fratelli Farina', 'GADE', 'Gasparini', 'Gecko', 'HACO (Atlantic)', 'Hammerle', 'Hesse', 'Hezinger', 'IMAL', 'Ironmac', 'ITEK', 'Jean Perrot', 'Jodri', 'KAAST', 'Karmet', 'Kingsland', 'Knuth', 'Mecos', 'MVD', 'Nargesa', 'OMAG', 'Peliant', 'Rico', 'Salvagnini', 'Schiavi', 'SMD', 'STR', 'Tabama', 'Teda', 'Vicla', 'Vimercati', 'Warcom', 'Yangli', 'YSD'];
+  /* Client logos live in assets/images/brands/ (name shown next to each logo) */
+  var clients = [
+    { name: 'TATA International DLT', logo: 'tata-international.jpg' }, { name: 'NIBE Limited', logo: 'nibe.jpg' },
+    { name: 'Visiontech Engineering', logo: 'visiontech.jpg' }, { name: 'Matchwell Engineering', logo: 'matchwell.jpg' },
+    { name: 'Automech', logo: 'automech.jpg' }, { name: 'Gloria Engineering Industries', logo: 'gloria.jpg' },
+    { name: 'CEBCO', logo: 'cebco.jpg' }, { name: 'Model Infra Corporation', logo: 'mic.jpg' },
+    { name: 'DMech', logo: 'dmech.jpg' }, { name: 'Jupiter', logo: 'jupiter.jpg' }
+  ];
 
   var KMC = {
     materials: materials, series: series, order: order, categories: categories, whyUs: whyUs,
-    tonnage: tonnage, tonnageCols: tonnageCols, hemming: hemming, brands: brands,
+    tonnage: tonnage, tonnageCols: tonnageCols, hemming: hemming, clients: clients,
     seriesFor: function (key) { return order.filter(function (c) { return series[c].cat === key; }).map(function (c) { return series[c]; }); },
     category: function (key) { return categories.filter(function (c) { return c.key === key; })[0]; }
   };

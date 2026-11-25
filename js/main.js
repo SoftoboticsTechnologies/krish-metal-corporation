@@ -203,11 +203,9 @@
     function next() { go(idx + 1); }
     function prev() { go(idx - 1); }
     function stop() { clearInterval(timer); timer = null; }
-    function restart() { stop(); if (!reduceMotion) timer = setInterval(next, DELAY); }
+    function restart() { stop(); timer = setInterval(next, DELAY); }
     $('.hero__arrow--next', hero).addEventListener('click', function () { next(); restart(); });
     $('.hero__arrow--prev', hero).addEventListener('click', function () { prev(); restart(); });
-    hero.addEventListener('mouseenter', stop);
-    hero.addEventListener('mouseleave', restart);
     hero.addEventListener('focusin', stop);
     hero.addEventListener('focusout', restart);
     hero.addEventListener('keydown', function (e) {
@@ -216,6 +214,31 @@
     });
     document.addEventListener('visibilitychange', function () { document.hidden ? stop() : restart(); });
     onSwipe(hero, function () { next(); restart(); }, function () { prev(); restart(); });
+    /* Text that sits on top of the photo turns black: a black copy of the
+       slide text is clipped to the photo's on-screen rectangle (object-fit: contain, right-aligned). */
+    slides.forEach(function (s) {
+      var c = $('.container', s);
+      if (!c) return;
+      var ink = document.createElement('div');
+      ink.className = 'hero__ink';
+      ink.setAttribute('aria-hidden', 'true');
+      ink.inert = true;
+      ink.appendChild(c.cloneNode(true));
+      s.appendChild(ink);
+    });
+    function placeInk() {
+      slides.forEach(function (s) {
+        var img = $('.hero__bg img', s), ink = $('.hero__ink', s);
+        if (!img || !ink) return;
+        var W = s.clientWidth, H = s.clientHeight;
+        var nw = +img.getAttribute('width'), nh = +img.getAttribute('height');
+        var k = Math.min(W / nw, H / nh), rw = nw * k, rh = nh * k;
+        var top = Math.max(0, (H - rh) / 2), left = Math.max(0, W - rw);
+        ink.style.clipPath = 'inset(' + top + 'px 0 ' + top + 'px ' + left + 'px)';
+      });
+    }
+    placeInk();
+    window.addEventListener('resize', placeInk);
     go(0); restart();
   }
 
@@ -421,9 +444,6 @@
         cols.map(function (c) { var v = row[3][c]; return v === undefined ? '<td class="empty">·</td>' : '<td data-s="' + c + '"' + (REC[row[0]] === c ? ' class="hl"' : '') + '>' + v + '</td>'; }).join('') + '</tr>';
     });
     el.innerHTML = html + '</tbody></table></div><p class="scroll-hint"><i class="fa-solid fa-arrows-left-right" aria-hidden="true"></i> Values in tonnes per metre of bend length (mild steel, TS 45 kg/mm²)</p>';
-  });
-  $$('[data-brands]').forEach(function (el) {
-    el.innerHTML = KMC.brands.map(function (b) { return '<span>' + esc(b) + '</span>'; }).join('') + '<span>…and more</span>';
   });
 
   /* ---------- 11. PRODUCTS FINDER (products.html) ---------- */
