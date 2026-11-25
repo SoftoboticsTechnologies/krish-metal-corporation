@@ -78,7 +78,7 @@ function head(p) {
     foundingDate: '2016', telephone: PHONE, email: EMAIL, taxID: GST, vatID: GST, priceRange: 'Price on request',
     address: { '@type': 'PostalAddress', streetAddress: 'Gat no 117/2, Jay Ganesh Samrajya Chowk, Jayawant Nagar, Landge Industrial Estate, Bhosari', addressLocality: 'Pune', addressRegion: 'Maharashtra', postalCode: '411039', addressCountry: 'IN' },
     geo: { '@type': 'GeoCoordinates', latitude: 18.6298, longitude: 73.8478 },
-    openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], opens: '09:30', closes: '19:00' }],
+    openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Friday', 'Saturday', 'Sunday'], opens: '09:30', closes: '19:00' }],
     sameAs: [IG, GMB],
     contactPoint: [{ '@type': 'ContactPoint', telephone: PHONE, contactType: 'sales', areaServed: 'IN', availableLanguage: ['English', 'Hindi', 'Marathi'] }]
   };
@@ -251,7 +251,7 @@ function footer(p) {
         <li><i class="fa-solid fa-phone" aria-hidden="true"></i><a href="tel:${PHONE}">${PHONE_TXT}</a></li>
         <li><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><a href="${WA_DEFAULT}" target="_blank" rel="noopener">${PHONE_TXT}</a></li>
         <li><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="mailto:${EMAIL}">${EMAIL}</a></li>
-        <li><i class="fa-solid fa-clock" aria-hidden="true"></i><span>Mon – Sat: 9:30 AM – 7:00 PM</span></li>
+        <li><i class="fa-solid fa-clock" aria-hidden="true"></i><span class="footer-hours">Mon – Sun: 9:30 AM – 7:00 PM (Thu closed)</span></li>
       </ul>
       <div class="socials">
         <a href="${IG}" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
@@ -1216,7 +1216,7 @@ function contact() {
       <div class="info-block mt-2 reveal">
         <h3><i class="fa-solid fa-clock" aria-hidden="true"></i> Business Hours</h3>
         <!-- CLIENT: confirm business hours -->
-        <ul class="hours"><li><span>Monday – Saturday</span><strong>9:30 AM – 7:00 PM</strong></li><li><span>Sunday</span><strong>Closed</strong></li></ul>
+        <ul class="hours"><li><span>Monday – Sunday</span><strong>9:30 AM – 7:00 PM</strong></li><li><span>Thursday</span><strong>Closed</strong></li></ul>
       </div>
     </div>
     <div class="calc__panel reveal reveal-delay-1" id="enquiry">
