@@ -232,7 +232,6 @@ function footer(p) {
       <ul class="footer-links">
         <li><a href="${r}index.html">Home</a></li>
         <li><a href="${r}about.html">About Us</a></li>
-        <li><a href="${r}products.html">All Products</a></li>
         <li><a href="${r}services.html">Services</a></li>
         <li><a href="${r}technical.html">Technical Info</a></li>
         <li><a href="${r}technical.html#calculator">Bending Force Calculator</a></li>
@@ -243,12 +242,12 @@ function footer(p) {
     </div>
     <div class="footer-col">
       <h3>Products</h3>
-      <ul class="footer-links">${prods}</ul>
+      <ul class="footer-links"><li><a href="${r}products.html">All Products</a></li>${prods}</ul>
     </div>
     <div class="footer-col">
       <h3>Contact Us</h3>
       <ul class="footer-contact">
-        <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>${ADDR_HTML}</span></li>
+        <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>${ADDR_HTML.replace(/<br>/g, " ")}</span></li>
         <li><i class="fa-solid fa-phone" aria-hidden="true"></i><a href="tel:${PHONE}">${PHONE_TXT}</a></li>
         <li><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><a href="${WA_DEFAULT}" target="_blank" rel="noopener">${PHONE_TXT}</a></li>
         <li><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="mailto:${EMAIL}">${EMAIL}</a></li>
